@@ -4,36 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e9d72ca-0ae6-4b8b-881e-add8e994a067" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OthelloOnlineMultiplayer.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/client/main/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/client/main/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/client/main/NetPlayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/client/main/PlayerHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/client/main/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/client/packets/AddConnectionPacket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/client/packets/RemoveConnectionPacket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/game/Brick.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/game/GamePanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/game/GameTime.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/game/KeyHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/game/Line.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/game/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/game/MouseHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/game/Vector2D.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/server/main/Connection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/server/main/ConnectionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/server/main/EventListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/server/main/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/server/main/Server.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/server/packets/AddConnectionPacket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eliascregard/server/packets/RemoveConnectionPacket.java" afterDir="false" />
+    <list default="true" id="5e9d72ca-0ae6-4b8b-881e-add8e994a067" name="Changes" comment="Completed the isLegal(x, y) function.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eliascregard/game/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/eliascregard/game/Brick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eliascregard/game/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/eliascregard/game/GamePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,8 +87,15 @@
       <updated>1668030568780</updated>
       <workItem from="1668030570400" duration="4765000" />
       <workItem from="1668037372908" duration="2393000" />
-      <workItem from="1668076704456" duration="7923000" />
+      <workItem from="1668076704456" duration="9956000" />
     </task>
+    <task id="LOCAL−00001" summary="First commit">
+      <created>1668087880238</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1668087880238</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,5 +111,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="First commit" />
+    <MESSAGE value="Completed the isLegal(x, y) function." />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed the isLegal(x, y) function." />
   </component>
 </project>

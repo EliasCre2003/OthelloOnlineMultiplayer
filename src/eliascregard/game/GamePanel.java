@@ -59,10 +59,39 @@ public class GamePanel extends JPanel implements Runnable {
         if (x < 0 || x >= grid.length || y < 0 || y >= grid[0].length) {
             return false;
         }
+        Vector2D[] directions = new Vector2D[] {
+                new Vector2D(1, 0),
+                new Vector2D(1, 1),
+                new Vector2D(0, 1),
+                new Vector2D(-1, 1),
+                new Vector2D(-1, 0),
+                new Vector2D(-1, -1),
+                new Vector2D(0, -1),
+                new Vector2D(1, -1)
+        };
 
+        for (Vector2D direction : directions) {
+            int step = 1;
+            while (true) {
+                int x2 = (int) (x + direction.x * step);
+                int y2 = (int) (y + direction.y * step);
 
-
-        return true;
+                if (x2 < 0 || x2 >= grid.length || y2 < 0 || y2 >= grid[0].length) {
+                    break;
+                }
+                if (grid[x2][y2] == null) {
+                    break;
+                }
+                if (grid[x2][y2].player == turn) {
+                    if (step > 1) {
+                        return true;
+                    }
+                    break;
+                }
+                step++;
+            }
+        }
+        return false;
     }
 
     public void recalculateGrid(int x, int y) {
@@ -142,6 +171,7 @@ public class GamePanel extends JPanel implements Runnable {
                 gameOver = true;
             }
             else {
+                otherPlayerNoLegalMoves = true;
                 turn = (turn + 1) % 2;
             }
             return;

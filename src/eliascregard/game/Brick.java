@@ -4,14 +4,14 @@ import java.awt.Color;
 
 public class Brick {
 
-    public int type = 0;
+    public int player;
 
-    public Brick(int type) {
-        this.type = type;
+    public Brick(int player) {
+        this.player = player;
     }
 
     public Color getColor() {
-        return new Color(255 * type, 255 * type, 255 * type);
+        return new Color(255 * player, 255 * player, 255 * player);
     }
 
 }
