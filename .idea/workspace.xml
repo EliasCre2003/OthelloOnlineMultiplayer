@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5e9d72ca-0ae6-4b8b-881e-add8e994a067" name="Changes" comment="Completed the isLegal(x, y) function.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/eliascregard/game/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/eliascregard/game/Brick.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/eliascregard/game/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/eliascregard/game/GamePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -87,7 +86,7 @@
       <updated>1668030568780</updated>
       <workItem from="1668030570400" duration="4765000" />
       <workItem from="1668037372908" duration="2393000" />
-      <workItem from="1668076704456" duration="9956000" />
+      <workItem from="1668076704456" duration="11259000" />
     </task>
     <task id="LOCAL−00001" summary="First commit">
       <created>1668087880238</created>
@@ -95,7 +94,13 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1668087880238</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL−00002" summary="Completed the isLegal(x, y) function.">
+      <created>1668089840527</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1668089840527</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
