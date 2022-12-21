@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e9d72ca-0ae6-4b8b-881e-add8e994a067" name="Changes" comment="Completed the isLegal(x, y) function.">
+    <list default="true" id="5e9d72ca-0ae6-4b8b-881e-add8e994a067" name="Changes" comment="Completed the updateGrid(x,y) function. v">
+      <change afterPath="$PROJECT_DIR$/src/eliascregard/game/AI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/eliascregard/game/OthelloGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eliascregard/game/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/eliascregard/game/Brick.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/eliascregard/game/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/eliascregard/game/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eliascregard/game/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/eliascregard/game/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eliascregard/game/MouseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/eliascregard/game/MouseHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,9 +50,15 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm"
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\elias\IdeaProjects\OthelloOnlineMultiplayer\src\eliascregard\game" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Start Game">
     <configuration name="New Client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="eliascregard.client.main.Main" />
@@ -59,6 +70,7 @@
     <configuration name="Start Game" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="eliascregard.game.Main" />
       <module name="OthelloOnlineMultiplayer" />
+      <option name="PROGRAM_PARAMETERS" value="1000 1000" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -86,7 +98,9 @@
       <updated>1668030568780</updated>
       <workItem from="1668030570400" duration="4765000" />
       <workItem from="1668037372908" duration="2393000" />
-      <workItem from="1668076704456" duration="11259000" />
+      <workItem from="1668076704456" duration="13640000" />
+      <workItem from="1668540297041" duration="66000" />
+      <workItem from="1671633380015" duration="5040000" />
     </task>
     <task id="LOCAL−00001" summary="First commit">
       <created>1668087880238</created>
@@ -100,7 +114,13 @@
       <option name="presentableId" value="LOCAL−00002" />
       <updated>1668089840527</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL−00003" summary="Completed the updateGrid(x,y) function.">
+      <created>1668091154336</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1668091154336</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,6 +140,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
     <MESSAGE value="Completed the isLegal(x, y) function." />
-    <option name="LAST_COMMIT_MESSAGE" value="Completed the isLegal(x, y) function." />
+    <MESSAGE value="Completed the updateGrid(x,y) function." />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed the updateGrid(x,y) function." />
   </component>
 </project>

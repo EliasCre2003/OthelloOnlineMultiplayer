@@ -2,50 +2,25 @@ package eliascregard.game;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Arrays;
 
 
 public class GamePanel extends JPanel implements Runnable {
-    final Dimension SCREEN_SIZE = new Dimension(1000, 1000);
-    final Dimension DEFAULT_SCREEN_SIZE = new Dimension(1000, 1000);
-    final double SCREEN_SCALE = (double) SCREEN_SIZE.width / DEFAULT_SCREEN_SIZE.width;
-    int MAX_FRAME_RATE = 0;
-    int MAX_TICKSPEED = 0;
-    long timeAtMovement = System.nanoTime();
-    public long timeSinceMovement() {
-        return System.nanoTime() - timeAtMovement;
-    }
-    public Thread gameThread;
-    GameTime time = new GameTime();
-    KeyHandler keyH = new KeyHandler();
-    MouseHandler mouse = new MouseHandler();
-    double deltaT;
-    public int tickSpeed;
-    double renderDeltaT = 0;
-    public int fps;
-
-    Brick[][] grid = new Brick[8][8];
-    double gridOffset = 10 * SCREEN_SCALE;
-    int gridSize = (int) (SCREEN_SIZE.width - gridOffset * 2);
-    int cellSize = gridSize / grid.length;
-    int turn = (int) (Math.random() * 2);
-    boolean otherPlayerNoLegalMoves = false;
-    boolean gameOver = false;
-
-
-    public double[] sortArray(double[] array) {
-        double[] sortedArray = Arrays.copyOf(array, array.length);
-        for (int i = 0; i < sortedArray.length; i++) {
-            for (int j = 0; j < sortedArray.length - 1; j++) {
-                if (sortedArray[j] > sortedArray[j + 1]) {
-                    double temp = sortedArray[j];
-                    sortedArray[j] = sortedArray[j + 1];
-                    sortedArray[j + 1] = temp;
-                }
-            }
-        }
-        return sortedArray;
-    }
+    private Dimension WINDOW_SIZE = Main.WINDOW_SIZE;
+    private final Dimension DEFAULT_WINDOW_SIZE = new Dimension(1000, 1000);
+    private double WINDOW_SCALE = (double) WINDOW_SIZE.width / DEFAULT_WINDOW_SIZE.width;
+    private int MAX_FRAME_RATE = 0;
+    private Thread gameThread;
+    private GameTime time = new GameTime();
+    private KeyHandler keyH = new KeyHandler();
+    private MouseHandler mouse = new MouseHandler(WINDOW_SCALE);
+    private double deltaT;
+    private int tickSpeed;
+    private double renderDeltaT = 0;
+    private int fps;
+    private double gridOffset = 10 * WINDOW_SCALE;
+    private int gridSize = (int) (WINDOW_SIZE.width - gridOffset * 2);
+    private int cellSize = gridSize / 8;
+    private OthelloGame game = new OthelloGame();
 
     public void wait(int milliseconds) {
         try {
@@ -55,98 +30,13 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    public boolean isLegal(int x, int y) {
-        if (x < 0 || x >= grid.length || y < 0 || y >= grid[0].length) {
-            return false;
-        }
-        Vector2D[] directions = new Vector2D[] {
-                new Vector2D(1, 0),
-                new Vector2D(1, 1),
-                new Vector2D(0, 1),
-                new Vector2D(-1, 1),
-                new Vector2D(-1, 0),
-                new Vector2D(-1, -1),
-                new Vector2D(0, -1),
-                new Vector2D(1, -1)
-        };
-
-        for (Vector2D direction : directions) {
-            int step = 1;
-            while (true) {
-                int x2 = (int) (x + direction.x * step);
-                int y2 = (int) (y + direction.y * step);
-
-                if (x2 < 0 || x2 >= grid.length || y2 < 0 || y2 >= grid[0].length) {
-                    break;
-                }
-                if (grid[x2][y2] == null) {
-                    break;
-                }
-                if (grid[x2][y2].player == turn) {
-                    if (step > 1) {
-                        return true;
-                    }
-                    break;
-                }
-                step++;
-            }
-        }
-        return false;
-    }
-
-    public void recalculateGrid(int x, int y) {
-        if (x < 0 || x >= grid.length || y < 0 || y >= grid[0].length) {
-            return;
-        }
-        Vector2D[] directions = new Vector2D[] {
-                new Vector2D(1, 0),
-                new Vector2D(1, 1),
-                new Vector2D(0, 1),
-                new Vector2D(-1, 1),
-                new Vector2D(-1, 0),
-                new Vector2D(-1, -1),
-                new Vector2D(0, -1),
-                new Vector2D(1, -1)
-        };
-        for (Vector2D direction : directions) {
-            int step = 1;
-            Brick[] possibleFlips = new Brick[grid.length * grid[0].length];
-            while (true) {
-                int x2 = (int) (x + direction.x * step);
-                int y2 = (int) (y + direction.y * step);
-
-                if (x2 < 0 || x2 >= grid.length || y2 < 0 || y2 >= grid[0].length) {
-                    break;
-                }
-                if (grid[x2][y2] == null) {
-                    break;
-                }
-
-                if (grid[x2][y2].player == turn) {
-                    if (step <= 1) {
-                        break;
-                    }
-                    for (Brick brick : possibleFlips) {
-                        if (brick != null) {
-                            brick.player = turn;
-                        }
-                    }
-                    break;
-                }
-                possibleFlips[step - 1] = grid[x2][y2];
-                step++;
-            }
-        }
-    }
-
-
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
     }
 
     public GamePanel() {
-        this.setPreferredSize(SCREEN_SIZE);
+        this.setPreferredSize(WINDOW_SIZE);
         this.setBackground(new Color(0, 0, 0));
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
@@ -156,11 +46,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     @Override
     public void run() {
-
-        grid[3][3] = new Brick(0);
-        grid[3][4] = new Brick(1);
-        grid[4][3] = new Brick(1);
-        grid[4][4] = new Brick(0);
 
         while (gameThread != null) {
             deltaT = time.getDeltaTime();
@@ -189,68 +74,32 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        if (gameOver) {
-            return;
-        }
 
-        boolean noLegalMoves = true;
-        for (int i = 0; i < grid.length; i++) {
-            boolean breakLoop = false;
-            for (int j = 0; j < grid.length; j++) {
-                if (grid[i][j] == null && isLegal(i, j)) {
-                    noLegalMoves = false;
-                    breakLoop = true;
-                    break;
-                }
-            }
-            if (breakLoop) {
-                break;
-            }
-        }
-        if (noLegalMoves) {
-            if (otherPlayerNoLegalMoves) {
-                gameOver = true;
-            }
-            else {
-                otherPlayerNoLegalMoves = true;
-                turn = (turn + 1) % 2;
-            }
-            return;
-        }
+        game.update();
 
-        otherPlayerNoLegalMoves = false;
-
-        if (!mouse.pressed) {
+        if (!mouse.leftIsPressed()) {
             return;
         }
-        mouse.pressed = false;
-        if (mouse.x < gridOffset || mouse.x > gridOffset + gridSize ||
-                mouse.y < gridOffset || mouse.y > gridOffset + gridSize) {
-            return;
-        }
-        int x = (int) ((mouse.x - gridOffset) / cellSize);
-        int y = (int) ((mouse.y - gridOffset) / cellSize);
-        if (grid[x][y] != null) {
-            return;
-        }
-        if (isLegal(x, y)) {
-            grid[x][y] = new Brick(turn);
-            recalculateGrid(x, y);
-            turn = (turn + 1) % 2;
-        }
+        mouse.setLeftIsPressed(false);
+        if (mouse.getX() < gridOffset || mouse.getX() > gridOffset + gridSize ||
+            mouse.getY() < gridOffset || mouse.getY() > gridOffset + gridSize) return;
+        int x = (int) ((mouse.getX() - gridOffset) / cellSize);
+        int y = (int) ((mouse.getY() - gridOffset) / cellSize);
+        if (game.getBrick(x, y) != null) return;
+        game.placeBrick(x, y);
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
-        g2.setColor(new Color(255 * turn,255 * turn,255 * turn));
-        g2.fillRect(0, 0, SCREEN_SIZE.width, SCREEN_SIZE.height);
+        g2.setColor(new Color(255 * game.getTurn(),255 * game.getTurn(),255 * game.getTurn()));
+        g2.fillRect(0, 0, WINDOW_SIZE.width, WINDOW_SIZE.height);
 
         g2.setColor(new Color(0, 155, 0));
         g2.fillRect((int) gridOffset, (int) gridOffset, gridSize, gridSize);
         g2.setStroke(new BasicStroke(1));
-        for (int i = 1; i < grid.length; i++) {
+        for (int i = 1; i < 8; i++) {
             g2.setColor(new Color(0, 0, 0));
             g2.drawLine((int) gridOffset + i * cellSize, (int) gridOffset,
                     (int) gridOffset + i * cellSize, (int) gridOffset + gridSize);
@@ -258,9 +107,9 @@ public class GamePanel extends JPanel implements Runnable {
                     (int) gridOffset + gridSize, (int) gridOffset + i * cellSize);
         }
 
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid.length; j++) {
-                Brick brick = grid[i][j];
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Brick brick = game.getBrick(i, j);
                 if (brick != null) {
                     g2.setColor(brick.getColor());
                     g2.fillOval((int) gridOffset + i * cellSize + 1, (int) gridOffset + j * cellSize + 1,
